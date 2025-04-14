@@ -2,19 +2,27 @@
 
 .page {
   font-family: var(--page-font-family);
-  background-color: var(--background-color);
+
   background-image: var(--background-image);
+  background-position: center;
   background-attachment: fixed;
+  background-size: cover;
+  min-inline-size: 375px;
+  max-inline-size: 1024px;
 
   /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
 }
-
+.decorated-zone {
+  position: relative;
+}
 .decorated-zone::before {
   align-self: flex-start;
   justify-self: end;
   position: absolute;
-  inset-block-start: 10;
-  inset-block-end: 10;
+  top: 20px; /* Отступ сверху */
+  bottom: 0px; /* Отступ снизу */
+  left: 0px; /* Отступ слева (по умолчанию 0) */
+  right: 20px;
   content: "";
   inline-size: 25px;
   block-size: 25px;
@@ -26,8 +34,10 @@
   justify-self: start;
   align-self: flex-end;
   position: absolute;
-  inset-block-start: 10;
-  inset-block-end: 10;
+  top: 0px; /* Отступ сверху */
+  bottom: 20px; /* Отступ снизу */
+  left: 20px; /* Отступ слева (по умолчанию 0) */
+  right: 0px;
   content: "";
   inline-size: 25px;
   block-size: 25px;
@@ -59,8 +69,10 @@
   align-self: flex-start;
   justify-self: end;
   position: absolute;
-  inset-block-start: 10;
-  inset-block-end: 10;
+  right: 20px;
+
+  top: 20px;
+
   visibility: var(--is-light);
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -125,6 +137,7 @@
 /* MAIN STYLES */
 
 .main {
+  background-color: var(--background-color);
   margin-block: 40px;
   padding-inline: 10px;
   display: grid;
@@ -194,7 +207,7 @@
   align-self: center;
   color: var(--h1-color);
   text-shadow: 2px 2px 0 var(--accent-color);
-  font-size: 7.5rem;
+  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
   line-height: var(--title-line-height);
 }
 @media (width >= 768px) {
@@ -231,7 +244,7 @@
     grid-column: 2 / 3;
   }
 
-  .topic__card .dophomin {
+  .special-topic .topic__card {
     grid-column: 1 / 4;
   }
 
@@ -313,34 +326,43 @@
     outline: none;
     border-bottom: 1px solid var(--decoration-color);
   }
-
+  .main {
+    margin-top: 0px;
+  }
   .topic {
     grid-template-columns: repeat(3, 1fr);
   }
-
+  .topic_why {
+    margin-top: 60px;
+  }
   .topic__card {
     grid-column: 2 / 4;
   }
+  .special-text {
+    margin-top: -30px;
+  }
 
-  .dophomin {
+  .special-topic {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, auto);
   }
 
-  .dophomin .topic__title {
+  .special-topic .topic__title {
     grid-row: span 1;
   }
 
-  .dophomin .topic__card {
+  .special-topic .topic__card {
     grid-row: 2 / 3;
     grid-column: span 1;
   }
-
+  .title_decor.special-decor {
+    height: 24px;
+  }
   .topic > .title_decor {
     grid-column: 2 / 4;
   }
 
   .footer__title {
-    font-size: 157px;
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
   }
 }
